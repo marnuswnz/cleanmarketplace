@@ -150,3 +150,23 @@ export function formatNzd(dollars: number): string {
 export function formatRange(low: number, high: number): string {
   return `${formatNzd(low)}–${formatNzd(high)}`;
 }
+
+/** Lowest headline price for a service ("from $X"), for marketing pages. */
+export function fromPrice(code: ServiceCode, config: PricingConfig): number | null {
+  const r = config.services[code];
+  if (!r) return null;
+  switch (r.kind) {
+    case "by_bedrooms":
+      return r.prices[0];
+    case "carpet":
+      return r.callout + r.per_room;
+    case "upholstery":
+      return Math.min(r.per_seat * 3, r.per_mattress);
+    case "oven":
+      return r.single;
+    case "window_tiers":
+      return r.tiers[0].price;
+    case "house_wash":
+      return r.single;
+  }
+}

@@ -91,3 +91,11 @@ export function offerWindow(now: Date, ttlMinutes: number): { offeredAt: Date; e
 export function addDays(date: Date, days: number): Date {
   return new Date(date.getTime() + days * 86_400_000);
 }
+
+/**
+ * Current time for server-rendered, per-request pages. (Server Components
+ * render once per request, so reading the clock here is intentional.)
+ */
+export function requestTime(): number {
+  return Date.now();
+}
