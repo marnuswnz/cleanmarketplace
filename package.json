@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "cleanmarketplace",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,8 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit",
-    "db:seed:gen": "tsx scripts/generate-seed.ts"
+    "typecheck": "next typegen && tsc --noEmit",
+    "db:seed:gen": "tsx scripts/generate-seed.ts",
+    "test:db": "bash scripts/test-db.sh"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

@@ -348,6 +348,12 @@ export function QuoteForm({ pricing, initialService, turnstileSiteKey }: { prici
     <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr]">
       <form onSubmit={submit} noValidate className="min-w-0">
         <Stepper step={step} />
+        {services.length > 0 && (
+          <div className="sticky top-16 z-20 -mx-4 mb-4 flex items-center justify-between border-y border-line bg-surface/95 px-4 py-2 backdrop-blur lg:hidden">
+            <span className="text-sm text-muted">Estimate</span>
+            <span className="font-bold">{formatRange(est.low, est.high)}</span>
+          </div>
+        )}
         {formError && <Alert tone="danger" className="mb-4">{formError}</Alert>}
 
         {step === 0 && (
